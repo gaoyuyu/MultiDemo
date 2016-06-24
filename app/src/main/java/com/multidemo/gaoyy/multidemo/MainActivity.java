@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    String[] arr = {"item01","item02","item03"};
-    String[] pagerTitle = {"Dead Man","Alive Guys","Utila","MassStu","Kssip","Yusuto"};
+    String[] arr = {"item01", "item02", "item03"};
+    String[] pagerTitle = {"Dead Man", "Alive Guys", "Utila", "MassStu", "Kssip", "Yusuto"};
 
     List<Fragment> fragmentList = new ArrayList<Fragment>();
 
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity
         initData();
         configViews();
     }
+
     public void configViews()
     {
         setSupportActionBar(toolbar);
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity
             {
                 super.onDrawerOpened(drawerView);
             }
+
             @Override
             public void onDrawerClosed(View drawerView)
             {
@@ -71,11 +73,11 @@ public class MainActivity extends AppCompatActivity
         actionBarDrawerToggle.syncState();
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
-        SystemBarTintManager tintManager=new SystemBarTintManager(this);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintResource(R.color.colorPrimaryDark);
         tintManager.setStatusBarTintEnabled(true);
 
-        pageAdapter = new PageAdapter(getSupportFragmentManager(),pagerTitle,fragmentList);
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), pagerTitle, fragmentList);
         viewPager.setAdapter(pageAdapter);
         viewPager.setOffscreenPageLimit(pagerTitle.length);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
@@ -106,33 +108,34 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setTabsFromPagerAdapter(pageAdapter);
 
     }
+
     public void initData()
     {
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, arr);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arr);
         leftlist.setAdapter(arrayAdapter);
 
-        for(int i=0;i<pagerTitle.length;i++)
+        for (int i = 0; i < pagerTitle.length; i++)
         {
             Bundle bundle = new Bundle();
-            bundle.putString("title",pagerTitle[i]);
+            bundle.putString("title", pagerTitle[i]);
             PageFragment pageFragment = new PageFragment();
             pageFragment.setArguments(bundle);
-            fragmentList.add(i,pageFragment);
+            fragmentList.add(i, pageFragment);
         }
 
 
-
     }
+
     public void initViews()
     {
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
-        leftlist = (ListView)findViewById(R.id.leftlv);
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        leftlist = (ListView) findViewById(R.id.leftlv);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
 
-        coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coordinatorLayout);
-        appBarLayout = (AppBarLayout)findViewById(R.id.appbarlayout);
-        tabLayout = (TabLayout)findViewById(R.id.tablayout);
-        viewPager = (ViewPager)findViewById(R.id.viewpager);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appbarlayout);
+        tabLayout = (TabLayout) findViewById(R.id.tablayout);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
 
 
     }
